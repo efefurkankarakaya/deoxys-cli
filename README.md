@@ -30,6 +30,12 @@ or
 <br />
 ```$ sudo pamac install nodejs```
 
+### Running
+
+Clone the repository with ```$ git clone https://github.com/efefurkankarakaya/deoxys-cli``` then enter the directory with ```cd deoxys-cli```.
+
+Install the project dependency files via ```npm install```, after the installation completed run the application with parameters as example below given.
+
 ### Parameters
 
  ``` -V, --version    output the version number
