@@ -19,7 +19,7 @@ const { audio, video, clipboard, url } = deoxys.opts();
 console.log(audio, video, clipboard, url);
 
 (() => {
-  let path = "";
+  let filePath = "";
   if (!url) {
     console.log("Please provide a url.");
     return;
@@ -29,16 +29,16 @@ console.log(audio, video, clipboard, url);
     return;
   }
   if (audio){
-    path = processAudio(url);
+    filePath = processAudio(url);
   }
   if (video){
-    path = processVideo(url);
+    filePath = processVideo(url);
   }
   if (clipboard){
     if (audio && video) { 
       console.log("Clipboard is disabled.");
       return;
     }
-    copyPathToClipboard(path);
+    copyPathToClipboard(filePath);
   }
 })();
