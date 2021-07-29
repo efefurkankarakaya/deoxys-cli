@@ -1,0 +1,18 @@
+{
+  "name": "deoxys-cli",
+  "version": "1.0.0",
+  "description": "A high quality Youtube content handler tool",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Efe Furkan KARAKAYA",
+  "license": "MIT",
+  "dependencies": {
+    "clipboardy": "^2.3.0",
+    "commander": "^8.1.0",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^4.4.0",
+    "ytdl-core": "^4.9.0"
+  }
+}
