@@ -18,7 +18,7 @@ const processAudio = async (ref) => {
   const filePath = downloadPath + "/" + fileName;
   if (fs.existsSync(filePath)) {
     console.log(`${fileName} already exists.`);
-    return;
+    return filePath;
   }
   audioProcessingArgs[audioProcessingArgs.length - 1] = filePath;
 
@@ -48,7 +48,7 @@ const processVideo = async (ref) => {
   const filePath = downloadPath + "/" + fileName;
   if (fs.existsSync(filePath)) {
     console.log(`${fileName} already exists.`);
-    return;
+    return filePath;
   }
   videoProcessingArgs[videoProcessingArgs.length - 1] = filePath;
 

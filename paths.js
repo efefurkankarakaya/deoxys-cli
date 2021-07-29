@@ -11,8 +11,8 @@ const createDownloadPath = () => {
   }
 };
 
-const copyPathToClipboard = () => {
-  clipboardy.writeSync(fs.getcwd() + "/downloads");
+const copyPathToClipboard = (filePath) => {
+  clipboardy.writeSync(filePath);
 }
 
 module.exports = { downloadPath, createDownloadPath, copyPathToClipboard };

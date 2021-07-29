@@ -18,7 +18,7 @@ console.log(deoxys.opts());
 const { audio, video, clipboard, url } = deoxys.opts();
 console.log(audio, video, clipboard, url);
 
-(() => {
+(async () => {
   let filePath = "";
   if (!url) {
     console.log("Please provide a url.");
@@ -29,10 +29,10 @@ console.log(audio, video, clipboard, url);
     return;
   }
   if (audio){
-    filePath = processAudio(url);
+    filePath = await processAudio(url);
   }
   if (video){
-    filePath = processVideo(url);
+    filePath = await processVideo(url);
   }
   if (clipboard){
     if (audio && video) { 
