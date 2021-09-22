@@ -6,7 +6,7 @@ const { createDownloadPath, copyPathToClipboard } = require("./paths");
 createDownloadPath();
 
 deoxys
-  .version("1.0.0")
+  .version("1.1.0")
   .description("A high quality Youtube content handler tool");
 
 deoxys
