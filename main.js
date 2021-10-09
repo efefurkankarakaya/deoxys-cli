@@ -26,7 +26,7 @@ const { audio, video, clipboard, url, list } = deoxys.opts();
 console.log(audio, video, clipboard, url, list);
 
 (async () => {
-  let filePath = "";
+  let filePath = ""; // TODO: that'll break url download, move to handleURL
   if (!url && !list) {
     console.log("Please provide a url or a file.");
     return;
@@ -51,7 +51,8 @@ console.log(audio, video, clipboard, url, list);
 async function handleFile(list) {
   console.log("Read file");
   const file = fs.readFileSync(list, "utf8");
-  const data = file.split("\n");
+  const parsedContent = file.split("\n");
+  const data = parsedContent.slice(0, parsedContent.length - 1);
   console.log(data);
   if (!audio && !video) {
     console.log("Please provide at least one of the stream options.");
