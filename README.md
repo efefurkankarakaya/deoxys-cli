@@ -46,36 +46,36 @@ Install the project dependency files via `npm install`, after the installation c
  -a, --audio      Enable audio processing
  -v --video       Enable video processing
  -c, --clipboard  Copy the save location to the clipboard (for single processing)
- -u, --url <url>  Single URL (e.g. https://www.youtube.com/watch?v=00000000)
+ -u, --url <url>  Single URL (e.g. https://youtu.be/G8qmNGepp3k)
  -l --list <file> List of URLs (e.g. musics.txt)
  -h, --help       Display help
 ```
 
 ## Example Usage
 
-#### Downloading an audio by giving single URL and copy download location to clipboard
+Downloading an audio by giving single URL and copy download location to clipboard
 
 `$ node main.js -a -c -u "https://www.youtube.com/watch?v=<video_id>"`
 
-#### Downloading a video by giving single URL
+Downloading a video by giving single URL
 
 `$ node main.js -v -c -u "https://www.youtube.com/watch?v=<video_id>"`
 
-#### Downloading audios by reading links from file
+Downloading audios by reading links from file
 
 `$ node main.js -a -l musics.txt`
 
-#### Downloading videos by reading links from file
+Downloading videos by reading links from file
 
 `$ node main.js -v -l musics.txt`
 
-#### Downloading audios and videos by reading links from file
+Downloading audios and videos by reading links from file
 
 `$ node main.js -a -v -l musics.txt`
 
 ### Example File Content
 
-`(musics.txt)`
+`musics.txt`
 
 ```
 https://youtu.be/G8qmNGepp3k
