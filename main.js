@@ -20,13 +20,11 @@ deoxys
   .option("-l, --list <file.txt>", "The file contains list of urls.")
   .parse();
 
-console.log(deoxys.opts());
-
 const { audio, video, clipboard, url, list } = deoxys.opts();
+console.log(deoxys.opts());
 console.log(audio, video, clipboard, url, list);
 
 (async () => {
-  let filePath = ""; // TODO: that'll break url download, move to handleURL
   if (!url && !list) {
     console.log("Please provide a url or a file.");
     return;
@@ -49,10 +47,10 @@ console.log(audio, video, clipboard, url, list);
 })();
 
 async function handleFile(list) {
-  console.log("Read file");
+  console.log("Read file.");
   const file = fs.readFileSync(list, "utf8");
   const parsedContent = file.split("\n");
-  const data = parsedContent.slice(0, parsedContent.length - 1);
+  const data = parsedContent.slice(0, parsedContent.length);
   console.log(data);
   if (!audio && !video) {
     console.log("Please provide at least one of the stream options.");
@@ -67,7 +65,7 @@ async function handleFile(list) {
       filePath = await processVideo(url);
     }
   }
-  console.log("Done.");
+  console.log("File handler has done the job.");
   return;
 }
 
