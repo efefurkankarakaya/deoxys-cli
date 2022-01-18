@@ -11,10 +11,12 @@ const { downloadPath } = require("./paths");
 const cp = require("child_process");
 const fs = require("fs");
 const ytdl = require("ytdl-core");
+// const logUpdate = require("log-update");
 
 const processAudio = async (ref) => {
   const title = (await ytdl.getInfo(ref)).videoDetails.title;
-  const fileName = title + ".mp3";
+  const fileExtension = ".mp3";
+  const fileName = title + fileExtension;
   const filePath = downloadPath + "/" + fileName;
   if (fs.existsSync(filePath)) {
     console.log(`${fileName} already exists.`);
@@ -22,35 +24,41 @@ const processAudio = async (ref) => {
   }
   audioProcessingArgs[audioProcessingArgs.length - 1] = filePath;
 
+  console.log(`${title} has started to being downloaded.`);
+
   const audio = ytdl(ref, { quality: `highestaudio` });
+
   const ffmpegProcess = cp.spawn(
     processor,
     audioProcessingArgs,
     audioProcessingOptions
   );
 
-  ffmpegProcess.on("close", () => {
-    console.log("Done." + "\n");
-  });
+  // ffmpegProcess.stdio[3].on("data", (chunk) => {
+  //   logUpdate(chunk.toString());
+  // });
 
-  ffmpegProcess.stdio[3].on("data", (chunk) => {
-    console.log(chunk.toString() + "\n");
+  ffmpegProcess.on("close", () => {
+    console.log(`${title} has downloaded as audio.`);
   });
 
   audio.pipe(ffmpegProcess.stdio[4]);
 
-  return filePath
+  return filePath;
 };
 
 const processVideo = async (ref) => {
   const title = (await ytdl.getInfo(ref)).videoDetails.title;
-  const fileName = title + ".mp4";
+  const fileExtension = ".mp4";
+  const fileName = title + fileExtension;
   const filePath = downloadPath + "/" + fileName;
   if (fs.existsSync(filePath)) {
     console.log(`${fileName} already exists.`);
     return filePath;
   }
   videoProcessingArgs[videoProcessingArgs.length - 1] = filePath;
+
+  console.log(`${title} has started to being downloaded.`);
 
   const audio = ytdl(ref, { quality: `highestaudio` });
   const video = ytdl(ref, { quality: `highestvideo` });
@@ -61,12 +69,12 @@ const processVideo = async (ref) => {
     videoProcessingOptions
   );
 
-  ffmpegProcess.on("close", () => {
-    console.log("Done." + "\n");
-  });
+  // ffmpegProcess.stdio[3].on("data", (chunk) => {
+  //   logUpdate(chunk.toString());
+  // });
 
-  ffmpegProcess.stdio[3].on("data", (chunk) => {
-    console.log(chunk.toString() + "\n");
+  ffmpegProcess.on("close", () => {
+    console.log(`${title} has downloaded as video.`);
   });
 
   audio.pipe(ffmpegProcess.stdio[4]);
