@@ -47,7 +47,7 @@ Install the project dependency files via `npm install`, after the installation c
  -v --video       Enable video processing
  -c, --clipboard  Copy the save location to the clipboard (for single processing)
  -u, --url <url>  Single URL (e.g. https://youtu.be/G8qmNGepp3k)
- -l --list <file> List of URLs (e.g. musics.txt)
+ -l, --list <file> List of URLs (e.g. musics.txt)
  -h, --help       Display help
 ```
 
