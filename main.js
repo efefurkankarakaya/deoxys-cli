@@ -50,7 +50,12 @@ async function handleFile(list) {
   console.log("Read file.");
   const file = fs.readFileSync(list, "utf8");
   const parsedContent = file.split("\n");
-  const data = parsedContent.slice(0, parsedContent.length);
+  const numberOfURLs = parsedContent.length;
+  const data =
+    parsedContent[numberOfURLs - 1] != ""
+      ? parsedContent.slice(0, parsedContent.length)
+      : parsedContent.slice(0, parsedContent.length - 1);
+  console.log();
   console.log(data);
   if (!audio && !video) {
     console.log("Please provide at least one of the stream options.");
