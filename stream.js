@@ -11,6 +11,7 @@ const { downloadPath } = require("./paths");
 const cp = require("child_process");
 const fs = require("fs");
 const ytdl = require("ytdl-core");
+const logUpdate = require("log-update");
 // const logUpdate = require("log-update");
 
 const processAudio = async (ref) => {
@@ -34,9 +35,18 @@ const processAudio = async (ref) => {
     audioProcessingOptions
   );
 
-  // ffmpegProcess.stdio[3].on("data", (chunk) => {
-  //   logUpdate(chunk.toString());
-  // });
+  ffmpegProcess.stdio[3].on("data", (chunk) => {
+    const lines = chunk.toString().trim().split("\n");
+    const args = {};
+    for (const line of lines) {
+      const [key, value] = line.split("=");
+      args[key.trim()] = value.trim();
+    }
+    const speed = Number(args["bitrate"].split("kbits/s")[0]);
+    const downloaded = args["total_size"] / 1024 / 1024;
+    const output = `Download Speed: ${speed} Kbps\nDownloaded: ${downloaded} MB`;
+    logUpdate(output);
+  });
 
   ffmpegProcess.on("close", () => {
     console.log(`${title} has downloaded as audio.`);
@@ -69,9 +79,18 @@ const processVideo = async (ref) => {
     videoProcessingOptions
   );
 
-  // ffmpegProcess.stdio[3].on("data", (chunk) => {
-  //   logUpdate(chunk.toString());
-  // });
+  ffmpegProcess.stdio[3].on("data", (chunk) => {
+    const lines = chunk.toString().trim().split("\n");
+    const args = {};
+    for (const line of lines) {
+      const [key, value] = line.split("=");
+      args[key.trim()] = value.trim();
+    }
+    const speed = Number(args["bitrate"].split("kbits/s")[0]);
+    const downloaded = args["total_size"] / 1024 / 1024;
+    const output = `Download Speed: ${speed} Kbps\nDownloaded: ${downloaded} MB`;
+    logUpdate(output);
+  });
 
   ffmpegProcess.on("close", () => {
     console.log(`${title} has downloaded as video.`);
