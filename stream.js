@@ -12,7 +12,6 @@ const cp = require("child_process");
 const fs = require("fs");
 const ytdl = require("ytdl-core");
 const logUpdate = require("log-update");
-// const logUpdate = require("log-update");
 
 const processAudio = async (ref) => {
   const title = (await ytdl.getInfo(ref)).videoDetails.title;
