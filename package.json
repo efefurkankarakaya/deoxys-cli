@@ -10,10 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "clipboardy": "^2.3.0",
-    "commander": "^8.1.0",
+    "commander": "^8.3.0",
     "ffmpeg": "^0.0.4",
-    "ffmpeg-static": "^4.4.0",
+    "ffmpeg-static": "^4.4.1",
     "log-update": "4.0.0",
-    "ytdl-core": "^4.9.0"
+    "ytdl-core": "^4.11.1"
   }
 }
