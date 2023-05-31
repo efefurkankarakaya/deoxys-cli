@@ -12,9 +12,11 @@ const cp = require('child_process');
 const fs = require('fs');
 const ytdl = require('ytdl-core');
 const logUpdate = require('log-update');
+const { sanitizeTitle } = require('./utils');
 
 const processAudio = async (ref) => {
-  const title = (await ytdl.getInfo(ref)).videoDetails.title;
+  // TODO: Sanitize full text by replacing Turkish Characters and spaces.
+  const title = sanitizeTitle((await ytdl.getInfo(ref)).videoDetails.title);
   const fileExtension = '.mp3';
   const fileName = title + fileExtension;
   const filePath = downloadPath + '/' + fileName;
@@ -60,7 +62,7 @@ const processAudio = async (ref) => {
 };
 
 const processVideo = async (ref) => {
-  const title = (await ytdl.getInfo(ref)).videoDetails.title;
+  const title = sanitizeTitle((await ytdl.getInfo(ref)).videoDetails.title);
   const fileExtension = '.mp4';
   const fileName = title + fileExtension;
   const filePath = downloadPath + '/' + fileName;
